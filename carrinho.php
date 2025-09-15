@@ -1,7 +1,5 @@
 <?php
 
-header('Content-Type: text/html; charset=utf-8');
-
 $produtos = [
     ['id' => 1, 'nome' => 'Brigadeiro', 'preco' => 3.50, 'estoque' => 50],
     ['id' => 2, 'nome' => 'Beijinho', 'preco' => 3.00, 'estoque' => 45],
@@ -70,7 +68,7 @@ function removerItemDoCarrinho(int $id, array $carrinho, array &$produtos): arra
     }
 
     $quantidade = $carrinho[$id]['quantidade'];
-    atualizarEstoque($id, $quantidade, $produtos); // Chama a nova função DRY
+    atualizarEstoque($id, $quantidade, $produtos); 
     
     unset($carrinho[$id]);
     return $carrinho;
@@ -123,4 +121,5 @@ echo "Estoque atual do Brigadeiro (id=1): " . encontrarProduto(1, $produtos)['es
 $carrinho = adicionarItemAoCarrinho(2, 5, $carrinho, $produtos);
 echo "Cenário: Aplicar cupom de desconto 'DESCONTO10'<br>";
 echo "Total do carrinho: R$ " . calcularTotal($carrinho) . "<br>";
+
 echo "Total com desconto: R$ " . calcularTotal($carrinho, 'DESCONTO10') . "<br>";
